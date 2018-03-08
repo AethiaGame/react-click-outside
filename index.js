@@ -18,7 +18,9 @@ export default class ClickOutside extends Component {
 
   render() {
     const { children, onClickOutside, ...props } = this.props
-    return <div {...props} ref={this.getContainer}>{children}</div>
+    return React.Children.only(
+      React.cloneElement(children, { ...props, ref: this.getContainer })
+    );
   }
 
   componentDidMount() {
